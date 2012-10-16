@@ -78,7 +78,7 @@ init([PoolName, PoolSize, MaxRestarts, ChildMods, ChildMFA]) ->
 %%% non-API exports
 %%%===================================================================
 
--spec start_worker(integer(), atom(), [term()]) -> {ok, pid()}.
+-spec start_worker(integer(), atom(), {module(), atom(), [term()]}) -> {ok, pid()}.
 start_worker(Id, PoolTable, {M, F, A}) ->
     {ok, Pid} = apply(M, F, A),
     ets:insert(PoolTable, {Id, Pid}),
